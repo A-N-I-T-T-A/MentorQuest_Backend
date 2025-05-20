@@ -15,7 +15,7 @@ def create_superuser(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('core', '0009_update_payment_fields'),  # Update to match your latest
+        ('mentorapp', '0009_update_payment_fields'),  # Update to match your latest
     ]
 
     operations = [
