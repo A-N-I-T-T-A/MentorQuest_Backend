@@ -1,0 +1,131 @@
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .views import (
+    signup,
+    login,
+    google_auth,
+    complete_google_signup,
+    MentorProfileView,
+    MenteeProfileView,
+    skill_list,
+    skill_detail,
+    get_all_mentors,
+    get_mentor_by_id,
+    update_mentor_profile,
+    user_profile,
+    change_password,
+    get_all_users,
+    MentorshipRequestViewSet,
+    MentorshipRelationshipViewSet,
+    get_matching_mentors,
+    notification_list,
+    notification_detail,
+    create_notification,
+    mark_all_read,
+    set_hourly_rate,
+    create_mentor_profile,
+    create_mentee_profile,
+    get_mentee_profile,
+    get_unread_notification_count,
+    get_mentor_availability,
+    create_booking_order,
+    verify_payment,
+    mentor_notification_list,
+    mentor_sessions_list,
+    mentor_unread_notification_count,
+    send_session_email,
+    session_detail,
+    mentor_notification_detail,
+    mentor_notification_delete,
+    mentor_mark_all_read,
+    submit_feedback,
+    check_feedback_exists,
+    mentee_sessions_list,
+    mentee_unread_notification_count,
+    mentee_notification_list,
+    mentee_notification_detail,
+    mentee_notification_delete,
+    mentee_mark_all_read,
+    mentee_dashboard_data,
+    mentor_dashboard_data,
+    get_active_mentors_for_mentee,
+    end_mentorship_relationship,
+    mentor_feedbacks,
+    reset_password,
+    admin_reports,
+    send_request_status_email,
+    check_existing_sessions
+)
+
+router = DefaultRouter()
+router.register(r'mentorship-requests', MentorshipRequestViewSet, basename='mentorship-request')
+router.register(r'mentorship-relationships', MentorshipRelationshipViewSet, basename='mentorship-relationship')
+
+urlpatterns = [
+    path('signup/', signup, name='signup'),
+    path('login/', login, name='login'),
+    path('reset-password/', reset_password, name='reset-password'),
+    path('google-auth/', google_auth, name='google-auth'),
+    path('complete-google-signup/', complete_google_signup, name='complete-google-signup'),
+    path('mentor/profile/', MentorProfileView.as_view(), name='mentor-profile'),
+    path('mentee/profile/', MenteeProfileView.as_view(), name='mentee-profile'),
+    path('mentee-profile/<int:pk>/', get_mentee_profile, name='get_mentee_profile'),
+    path('skills/', skill_list, name='skill-list'),
+    path('skills/<int:pk>/', skill_detail, name='skill-detail'),
+    path('update-mentor-profile/', update_mentor_profile, name='update-mentor-profile'),
+    path('mentors/', get_all_mentors, name='get-all-mentors'),
+    path('mentors/matching/', get_matching_mentors, name='get-matching-mentors'),
+    path('mentors/<int:mentor_id>/', get_mentor_by_id, name='get-mentor-by-id'),
+    path('mentors/<int:mentor_id>/set-hourly-rate/', set_hourly_rate, name='set-hourly-rate'),
+    path('mentor-profile/', create_mentor_profile, name='create-mentor-profile'),
+    path('mentee-profile/', create_mentee_profile, name='create_mentee_profile'),
+    path('user/profile/', user_profile, name='user-profile'),
+    path('user/change-password/', change_password, name='change-password'),
+    path('admin/users/', get_all_users, name='get-all-users'),
+    path('mentor-availability/<int:mentor_id>/', get_mentor_availability, name='get-mentor-availability'),
+    # Booking URLs
+    path('bookings/create-order/', create_booking_order, name='create-booking-order'),
+    path('bookings/verify-payment/', verify_payment, name='verify-payment'),
+    # Notification URLs
+    path('notifications/', notification_list, name='notification-list'),
+    path('notifications/<int:pk>/', notification_detail, name='notification-detail'),
+    path('notifications/create/', create_notification, name='create-notification'),
+    path('notifications/mark-all-read/', mark_all_read, name='mark-all-notifications-read'),
+    path('notifications/unread-count/', get_unread_notification_count, name='unread-notification-count'),
+    path('notifications/mentor/', mentor_notification_list, name='mentor-notification-list'),
+    path('notifications/mentor/<int:pk>/', mentor_notification_detail, name='mentor-notification-detail'),
+    path('notifications/mentor/<int:pk>/delete/', mentor_notification_delete, name='mentor-notification-delete'),
+    path('notifications/mentor/mark-all-read/', mentor_mark_all_read, name='mentor-mark-all-read'),
+    path('notifications/mentor/unread-count/', mentor_unread_notification_count, name='mentor_unread_notification_count'),
+    path('send-session-email/', send_session_email, name='send_session_email'),
+    path('sessions/mentor/', mentor_sessions_list, name='mentor-sessions-list'),
+    path('sessions/mentee/', mentee_sessions_list, name='mentee-sessions-list'),
+    path('sessions/<int:session_id>/', session_detail, name='session-detail'),
+    # Mentee Notification URLs
+    path('mentee-notifications/', mentee_notification_list, name='mentee-notification-list'),
+    path('mentee-notifications/<int:pk>/', mentee_notification_detail, name='mentee-notification-detail'),
+    path('mentee-notifications/<int:pk>/delete/', mentee_notification_delete, name='mentee-notification-delete'),
+    path('mentee-mark-all-read/', mentee_mark_all_read, name='mentee-mark-all-read'),
+    path('mentee-unread-notification-count/', mentee_unread_notification_count, name='mentee-unread-notification-count'),
+    # Feedback URLs
+    path('feedback/<int:session_id>/exists/', check_feedback_exists, name='check-feedback-exists'),
+    path('feedback/', submit_feedback, name='submit-feedback'),
+    
+    # Dashboard endpoints
+    path('dashboard/mentee/', mentee_dashboard_data, name='mentee_dashboard'),
+    path('dashboard/mentor/', mentor_dashboard_data, name='mentor_dashboard'),
+    
+    path('mentorship-relationships/active/mentee/', get_active_mentors_for_mentee, name='active_mentors_for_mentee'),
+    
+    path('mentorship-relationships/end/<int:user_id>/', end_mentorship_relationship, name='end_mentorship_relationship'),
+    
+    path('mentor/feedbacks/', mentor_feedbacks, name='mentor-feedbacks'),
+    
+    path('admin/reports/', admin_reports, name='admin-reports'),
+    
+    path('send-request-status-email/', send_request_status_email, name='send_request_status_email'),
+    
+    path('check-existing-sessions/', check_existing_sessions, name='check-existing-sessions'),
+    
+    path('', include(router.urls)),
+]

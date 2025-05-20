@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            background-color: #4a90e2;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .content {
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 12px;
+            color: #666;
+        }
+        .status {
+            font-weight: bold;
+            color: #4a90e2;
+        }
+        .message {
+            background-color: #fff;
+            padding: 15px;
+            border-left: 4px solid #4a90e2;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Mentorship Request Update</h1>
+        </div>
+        <div class="content">
+            <p>Hello {{ recipient_name }},</p>
+            
+            <p>Your mentorship request to <strong>{{ mentor_name }}</strong> has been <span class="status">{{ status }}</span>.</p>
+            
+            {% if message %}
+            <div class="message">
+                <p><strong>Your original message:</strong></p>
+                <p>{{ message }}</p>
+            </div>
+            {% endif %}
+            
+            {% if status == 'Accepted' %}
+            <p>Congratulations! You can now schedule a session with your mentor through your dashboard.</p>
+            {% elif status == 'Rejected' %}
+            <p>Don't worry! You can still find other mentors who might be a better fit for your needs.</p>
+            {% endif %}
+            
+            <p>Visit your dashboard to view more details and take the next steps.</p>
+        </div>
+        <div class="footer">
+            <p>This is an automated message from MentorQuest. Please do not reply to this email.</p>
+        </div>
+    </div>
+</body>
+</html> 

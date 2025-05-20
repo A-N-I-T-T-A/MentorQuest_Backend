@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            background-color: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            border-radius: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 12px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Session Cancellation Notice</h2>
+        </div>
+        <div class="content">
+            <p>Dear {{ mentee_name }},</p>
+            
+            <p>We regret to inform you that your mentoring session has been cancelled.</p>
+            
+            <p><strong>Session Details:</strong></p>
+            <ul>
+                <li>Mentor: {{ mentor_name }}</li>
+                <li>Date: {{ session_date }}</li>
+                <li>Time: {{ session_time }}</li>
+            </ul>
+            
+            <p>Your payment for this session will be refunded to your original payment method. Please allow 5-7 business days for the refund to be processed.</p>
+            
+            <p>If you have any questions about the refund or would like to schedule another session, please don't hesitate to contact us.</p>
+            
+            <p>Best regards,<br>MentorQuest Team</p>
+        </div>
+        <div class="footer">
+            <p>This is an automated message, please do not reply directly to this email.</p>
+        </div>
+    </div>
+</body>
+</html> 
