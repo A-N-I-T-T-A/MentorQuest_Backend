@@ -19,11 +19,24 @@ from django.urls import path, include
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.static import serve
+from django.urls import re_path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("mentorapp/token/", TokenObtainPairView.as_view(), name="get_token"),
     path("mentorapp/token/refresh/", TokenRefreshView.as_view(), name="refresh"),
     path("mentorapp-auth/", include("rest_framework.urls")),
-    path("mentorapp/", include("mentorapp.urls")), 
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path("mentorapp/", include("mentorapp.urls")),
+]
+
+# Serve media files in development
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+else:
+    # Serve media files in production
+    urlpatterns += [
+        re_path(r'^mentorapp/media/(?P<path>.*)$', serve, {
+            'document_root': settings.MEDIA_ROOT,
+        }),
+    ]
