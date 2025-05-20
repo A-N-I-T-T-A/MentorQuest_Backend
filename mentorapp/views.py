@@ -48,19 +48,6 @@ razorpay_client = razorpay.Client(
     auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_KEY_SECRET)
 )
 
-from django.http import HttpResponse
-from django.contrib.auth import get_user_model
-
-def create_admin(request):
-    User = get_user_model()
-    if not User.objects.filter(username='admin').exists():
-        User.objects.create_superuser('admin', 'admin@gmail.com', 'admin')
-        return HttpResponse("Superuser created!")
-    else:
-        return HttpResponse("Superuser already exists.")
-
-
-
 
 @api_view(['POST'])
 @permission_classes([AllowAny])  # 🔹 Allow access to everyone (unauthenticated users)
