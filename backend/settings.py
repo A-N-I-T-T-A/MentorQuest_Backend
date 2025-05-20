@@ -75,11 +75,11 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",  # Your React frontend URL
+    "https://a-n-i-t-t-a.github.io/MentorQuest_Frontend/",  # Your React frontend URL
 ]
 
 # Frontend URL for email templates and redirects
-FRONTEND_URL = "http://localhost:3000"
+FRONTEND_URL = "https://a-n-i-t-t-a.github.io/MentorQuest_Frontend/"
 
 CORS_ALLOW_CREDENTIALS = True
 
