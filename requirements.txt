@@ -21,3 +21,4 @@ psycopg2-binary==2.9.10
 typing_extensions==4.12.2
 tzdata==2025.1
 google-auth
+razorpay
