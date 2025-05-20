@@ -5,7 +5,11 @@ services:
     buildCommand: pip install -r requirements.txt
     startCommand: gunicorn backend.wsgi:application
     envVars:
-      - key: DJANGO_SECRET_KEY
+      - key: DATABASE_URL
+        value: 'DBurl'
+      - key: SECRET_KEY
         generateValue: true
       - key: DEBUG
-        value: False
+        value: false
+      - key: PYTHON_VERSION
+        value: 3.11
