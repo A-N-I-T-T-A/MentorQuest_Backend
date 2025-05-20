@@ -1,5 +1,6 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
+from .views import create_admin
 from .views import (
     signup,
     login,
@@ -62,6 +63,7 @@ router.register(r'mentorship-requests', MentorshipRequestViewSet, basename='ment
 router.register(r'mentorship-relationships', MentorshipRelationshipViewSet, basename='mentorship-relationship')
 
 urlpatterns = [
+    path('create-admin/', create_admin),
     path('signup/', signup, name='signup'),
     path('login/', login, name='login'),
     path('reset-password/', reset_password, name='reset-password'),
