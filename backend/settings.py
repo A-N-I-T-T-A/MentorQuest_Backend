@@ -132,22 +132,11 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 # Database Configuration
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.mysql',
-#        'NAME': config('DB_NAME'),
-#        'USER': config('DB_USER'),
-#        'PASSWORD': config('DB_PASSWORD'),
-#        'HOST': config('DB_HOST'),
-#        'PORT': config('DB_PORT'),
-#    }
-#}
 
 if 'DATABASE_URL' in os.environ:
     DATABASES = {
         'default': dj_database_url.config(
-            conn_max_age=600,
-            conn_health_checks=True,
+            default=os.environ.get('DATABASE_URL')
         )
     }
 else:
