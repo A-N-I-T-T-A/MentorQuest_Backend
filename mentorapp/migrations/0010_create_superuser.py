@@ -10,7 +10,7 @@ def create_superuser(apps, schema_editor):
             password=make_password('yourpassword123'),
             is_superuser=True,
             is_staff=True,
-            email='admin@example.com'
+            email='admin12@gmail.com'
         )
 
 class Migration(migrations.Migration):
